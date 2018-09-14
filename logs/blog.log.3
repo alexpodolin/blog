@@ -1,21 +1,4 @@
-2018-09-13 13:03:57,673 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
-2018-09-13 13:04:44,812 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
-2018-09-13 13:05:01,322 ERROR: Exception on /edit_profile [POST] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
-Traceback (most recent call last):
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
-    context)
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 509, in do_execute
-    cursor.execute(statement, parameters)
-  File "/www/blog/venv/lib/python3.6/site-packages/mysql/connector/cursor.py", line 559, in execute
-    self._handle_result(self._connection.cmd_query(stmt))
-  File "/www/blog/venv/lib/python3.6/site-packages/mysql/connector/connection.py", line 494, in cmd_query
-    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
-  File "/www/blog/venv/lib/python3.6/site-packages/mysql/connector/connection.py", line 396, in _handle_result
-    raise errors.get_exception(packet)
-mysql.connector.errors.IntegrityError: 1062 (23000): Duplicate entry 'susan' for key 'ix_user_username'
-
-The above exception was the direct cause of the following exception:
-
+2018-09-14 13:26:46,633 ERROR: Exception on /login [GET] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
 Traceback (most recent call last):
   File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -29,67 +12,38 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/www/blog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "/www/blog/app/routes.py", line 98, in edit_profile
-    db.session.commit()
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 153, in do
-    return getattr(self.registry(), name)(*args, **kwargs)
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 943, in commit
-    self.transaction.commit()
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 467, in commit
-    self._prepare_impl()
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 447, in _prepare_impl
-    self.session.flush()
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2254, in flush
-    self._flush(objects)
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2380, in _flush
-    transaction.rollback(_capture_exception=True)
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/util/langhelpers.py", line 66, in __exit__
-    compat.reraise(exc_type, exc_value, exc_tb)
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 249, in reraise
-    raise value
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 2344, in _flush
-    flush_context.execute()
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/orm/unitofwork.py", line 391, in execute
-    rec.execute(self)
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/orm/unitofwork.py", line 556, in execute
-    uow
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/orm/persistence.py", line 177, in save_obj
-    mapper, table, update)
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/orm/persistence.py", line 768, in _emit_update_statements
-    execute(statement, multiparams)
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
-    return meth(self, multiparams, params)
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
-    return connection._execute_clauseelement(self, multiparams, params)
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
-    compiled_sql, distilled_params
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
-    context)
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
-    exc_info
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 265, in raise_from_cause
-    reraise(type(exception), exception, tb=exc_tb, cause=cause)
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 248, in reraise
+  File "/www/blog/app/routes.py", line 55, in login
+    return render_template('login.html', title='Sign In', form=form)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/templating.py", line 135, in render_template
+    context, ctx.app)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/templating.py", line 117, in _render
+    rv = template.render(context)
+  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
     raise value.with_traceback(tb)
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
-    context)
-  File "/www/blog/venv/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 509, in do_execute
-    cursor.execute(statement, parameters)
-  File "/www/blog/venv/lib/python3.6/site-packages/mysql/connector/cursor.py", line 559, in execute
-    self._handle_result(self._connection.cmd_query(stmt))
-  File "/www/blog/venv/lib/python3.6/site-packages/mysql/connector/connection.py", line 494, in cmd_query
-    result = self._handle_result(self._send_cmd(ServerCmd.QUERY, query))
-  File "/www/blog/venv/lib/python3.6/site-packages/mysql/connector/connection.py", line 396, in _handle_result
-    raise errors.get_exception(packet)
-sqlalchemy.exc.IntegrityError: (mysql.connector.errors.IntegrityError) 1062 (23000): Duplicate entry 'susan' for key 'ix_user_username' [SQL: 'UPDATE user SET username=%(username)s, about_me=%(about_me)s WHERE user.id = %(user_id)s'] [parameters: {'username': 'susan', 'about_me': '', 'user_id': 1}] (Background on this error at: http://sqlalche.me/e/gkpj)
-2018-09-14 08:49:42,917 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
-2018-09-14 09:13:34,990 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
-2018-09-14 09:13:47,029 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
-2018-09-14 09:15:55,864 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
-2018-09-14 09:27:47,479 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
-2018-09-14 09:36:45,511 ERROR: Exception on /edit_profile [GET] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
+  File "/www/blog/app/templates/login.html", line 1, in top-level template code
+    {% extends "base.html"%}
+  File "/www/blog/app/templates/base.html", line 23, in top-level template code
+    {% block content %}{% endblock %}
+  File "/www/blog/app/templates/login.html", line 29, in block "content"
+    <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2061, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/helpers.py", line 345, in url_for
+    force_external=external)
+  File "/www/blog/venv/lib/python3.6/site-packages/werkzeug/routing.py", line 1776, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'reset_password_request'. Did you mean 'edit_profile' instead?
+2018-09-14 13:26:49,955 ERROR: Exception on /login [GET] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
 Traceback (most recent call last):
   File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -103,16 +57,39 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/www/blog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "/www/blog/app/routes.py", line 94, in edit_profile
-    form = EditProfileForm(current_user.username)
-  File "/www/blog/venv/lib/python3.6/site-packages/wtforms/form.py", line 212, in __call__
-    return type.__call__(cls, *args, **kwargs)
-  File "/www/blog/app/forms.py", line 37, in __init__
-    self.original_username = original_username
-NameError: name 'original_username' is not defined
-2018-09-14 09:36:50,246 ERROR: Exception on /edit_profile [GET] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
+  File "/www/blog/app/routes.py", line 55, in login
+    return render_template('login.html', title='Sign In', form=form)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/templating.py", line 135, in render_template
+    context, ctx.app)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/templating.py", line 117, in _render
+    rv = template.render(context)
+  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/www/blog/app/templates/login.html", line 1, in top-level template code
+    {% extends "base.html"%}
+  File "/www/blog/app/templates/base.html", line 23, in top-level template code
+    {% block content %}{% endblock %}
+  File "/www/blog/app/templates/login.html", line 29, in block "content"
+    <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2061, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/helpers.py", line 345, in url_for
+    force_external=external)
+  File "/www/blog/venv/lib/python3.6/site-packages/werkzeug/routing.py", line 1776, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'reset_password_request'. Did you mean 'edit_profile' instead?
+2018-09-14 13:27:13,595 INFO: Microblog startup [in /www/blog/app/__init__.py:50]
+2018-09-14 13:27:17,349 ERROR: Exception on /login [GET] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
 Traceback (most recent call last):
   File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -126,13 +103,34 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/www/blog/venv/lib/python3.6/site-packages/flask_login/utils.py", line 261, in decorated_view
-    return func(*args, **kwargs)
-  File "/www/blog/app/routes.py", line 94, in edit_profile
-    form = EditProfileForm(current_user.username)
-  File "/www/blog/venv/lib/python3.6/site-packages/wtforms/form.py", line 212, in __call__
-    return type.__call__(cls, *args, **kwargs)
-  File "/www/blog/app/forms.py", line 37, in __init__
-    self.original_username = original_username
-NameError: name 'original_username' is not defined
-2018-09-14 09:36:58,756 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
+  File "/www/blog/app/routes.py", line 55, in login
+    return render_template('login.html', title='Sign In', form=form)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/templating.py", line 135, in render_template
+    context, ctx.app)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/templating.py", line 117, in _render
+    rv = template.render(context)
+  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
+    return original_render(self, *args, **kwargs)
+  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
+    raise value.with_traceback(tb)
+  File "/www/blog/app/templates/login.html", line 1, in top-level template code
+    {% extends "base.html"%}
+  File "/www/blog/app/templates/base.html", line 23, in top-level template code
+    {% block content %}{% endblock %}
+  File "/www/blog/app/templates/login.html", line 29, in block "content"
+    <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/helpers.py", line 356, in url_for
+    return appctx.app.handle_url_build_error(error, endpoint, values)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2061, in handle_url_build_error
+    reraise(exc_type, exc_value, tb)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/helpers.py", line 345, in url_for
+    force_external=external)
+  File "/www/blog/venv/lib/python3.6/site-packages/werkzeug/routing.py", line 1776, in build
+    raise BuildError(endpoint, values, method, self)
+werkzeug.routing.BuildError: Could not build url for endpoint 'reset_password_request'. Did you mean 'edit_profile' instead?
