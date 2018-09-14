@@ -1,4 +1,4 @@
-2018-09-14 13:30:12,303 ERROR: Exception on /login [GET] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
+2018-09-14 13:56:22,660 ERROR: Exception on /reset_password_request [POST] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
 Traceback (most recent call last):
   File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -12,38 +12,12 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/www/blog/app/routes.py", line 55, in login
-    return render_template('login.html', title='Sign In', form=form)
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/templating.py", line 135, in render_template
-    context, ctx.app)
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/templating.py", line 117, in _render
-    rv = template.render(context)
-  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
-  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "/www/blog/app/templates/login.html", line 1, in top-level template code
-    {% extends "base.html"%}
-  File "/www/blog/app/templates/base.html", line 23, in top-level template code
-    {% block content %}{% endblock %}
-  File "/www/blog/app/templates/login.html", line 29, in block "content"
-    <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/helpers.py", line 356, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2061, in handle_url_build_error
-    reraise(exc_type, exc_value, tb)
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
-    raise value
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/helpers.py", line 345, in url_for
-    force_external=external)
-  File "/www/blog/venv/lib/python3.6/site-packages/werkzeug/routing.py", line 1776, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'reset_password_request'. Did you mean 'edit_profile' instead?
-2018-09-14 13:30:13,517 ERROR: Exception on /login [GET] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
+  File "/www/blog/app/routes.py", line 167, in reset_password_request
+    send_password_reset_email(user)
+  File "/www/blog/app/email.py", line 13, in send_password_reset_email
+    sender=app.config['ADMINS'][0],
+NameError: name 'app' is not defined
+2018-09-14 13:56:56,863 ERROR: Exception on /reset_password_request [POST] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
 Traceback (most recent call last):
   File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -57,38 +31,12 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/www/blog/app/routes.py", line 55, in login
-    return render_template('login.html', title='Sign In', form=form)
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/templating.py", line 135, in render_template
-    context, ctx.app)
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/templating.py", line 117, in _render
-    rv = template.render(context)
-  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
-  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "/www/blog/app/templates/login.html", line 1, in top-level template code
-    {% extends "base.html"%}
-  File "/www/blog/app/templates/base.html", line 23, in top-level template code
-    {% block content %}{% endblock %}
-  File "/www/blog/app/templates/login.html", line 29, in block "content"
-    <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/helpers.py", line 356, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2061, in handle_url_build_error
-    reraise(exc_type, exc_value, tb)
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
-    raise value
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/helpers.py", line 345, in url_for
-    force_external=external)
-  File "/www/blog/venv/lib/python3.6/site-packages/werkzeug/routing.py", line 1776, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'reset_password_request'. Did you mean 'edit_profile' instead?
-2018-09-14 13:30:13,973 ERROR: Exception on /login [GET] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
+  File "/www/blog/app/routes.py", line 167, in reset_password_request
+    send_password_reset_email(user)
+  File "/www/blog/app/email.py", line 13, in send_password_reset_email
+    sender=app.config['ADMINS'][0],
+NameError: name 'app' is not defined
+2018-09-14 13:57:02,978 ERROR: Exception on /reset_password_request [POST] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
 Traceback (most recent call last):
   File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
     response = self.full_dispatch_request()
@@ -102,43 +50,88 @@ Traceback (most recent call last):
     rv = self.dispatch_request()
   File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
     return self.view_functions[rule.endpoint](**req.view_args)
-  File "/www/blog/app/routes.py", line 55, in login
-    return render_template('login.html', title='Sign In', form=form)
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/templating.py", line 135, in render_template
-    context, ctx.app)
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/templating.py", line 117, in _render
-    rv = template.render(context)
-  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/asyncsupport.py", line 76, in render
-    return original_render(self, *args, **kwargs)
-  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 1008, in render
-    return self.environment.handle_exception(exc_info, True)
-  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/environment.py", line 780, in handle_exception
-    reraise(exc_type, exc_value, tb)
-  File "/www/blog/venv/lib/python3.6/site-packages/jinja2/_compat.py", line 37, in reraise
-    raise value.with_traceback(tb)
-  File "/www/blog/app/templates/login.html", line 1, in top-level template code
-    {% extends "base.html"%}
-  File "/www/blog/app/templates/base.html", line 23, in top-level template code
-    {% block content %}{% endblock %}
-  File "/www/blog/app/templates/login.html", line 29, in block "content"
-    <a href="{{ url_for('reset_password_request') }}">Click to Reset It</a>
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/helpers.py", line 356, in url_for
-    return appctx.app.handle_url_build_error(error, endpoint, values)
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2061, in handle_url_build_error
+  File "/www/blog/app/routes.py", line 167, in reset_password_request
+    send_password_reset_email(user)
+  File "/www/blog/app/email.py", line 13, in send_password_reset_email
+    sender=app.config['ADMINS'][0],
+NameError: name 'app' is not defined
+2018-09-14 13:57:48,182 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
+2018-09-14 13:58:01,503 ERROR: Exception on /reset_password_request [POST] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1718, in handle_user_exception
     reraise(exc_type, exc_value, tb)
   File "/www/blog/venv/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
     raise value
-  File "/www/blog/venv/lib/python3.6/site-packages/flask/helpers.py", line 345, in url_for
-    force_external=external)
-  File "/www/blog/venv/lib/python3.6/site-packages/werkzeug/routing.py", line 1776, in build
-    raise BuildError(endpoint, values, method, self)
-werkzeug.routing.BuildError: Could not build url for endpoint 'reset_password_request'. Did you mean 'edit_profile' instead?
-2018-09-14 13:38:12,722 INFO: Microblog startup [in /www/blog/app/__init__.py:49]
-2018-09-14 13:38:31,629 INFO: Microblog startup [in /www/blog/app/__init__.py:49]
-2018-09-14 13:41:15,849 INFO: Microblog startup [in /www/blog/app/__init__.py:49]
-2018-09-14 13:42:32,191 INFO: Microblog startup [in /www/blog/app/__init__.py:49]
-2018-09-14 13:42:58,566 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
-2018-09-14 13:43:48,895 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
-2018-09-14 13:45:03,121 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
-2018-09-14 13:55:18,891 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
-2018-09-14 13:56:07,239 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/www/blog/app/routes.py", line 167, in reset_password_request
+    send_password_reset_email(user)
+  File "/www/blog/app/email.py", line 13, in send_password_reset_email
+    sender=app.config['ADMINS'][0],
+NameError: name 'app' is not defined
+2018-09-14 14:02:41,490 ERROR: Exception on /reset_password_request [POST] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/www/blog/app/routes.py", line 167, in reset_password_request
+    send_password_reset_email(user)
+  File "/www/blog/app/email.py", line 13, in send_password_reset_email
+    sender=app.config['ADMINS'][0],
+NameError: name 'app' is not defined
+2018-09-14 14:07:41,631 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
+2018-09-14 14:07:57,349 ERROR: Exception on /reset_password_request [POST] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/www/blog/app/routes.py", line 167, in reset_password_request
+    send_password_reset_email(user)
+  File "/www/blog/app/email.py", line 13, in send_password_reset_email
+    sender=app.config['ADMINS'][0],
+NameError: name 'app' is not defined
+2018-09-14 14:09:52,170 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
+2018-09-14 14:10:46,514 INFO: Microblog startup [in /www/blog/app/__init__.py:47]
+2018-09-14 14:10:52,055 ERROR: Exception on /reset_password_request [POST] [in /www/blog/venv/lib/python3.6/site-packages/flask/app.py:1761]
+Traceback (most recent call last):
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 2292, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1815, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1718, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/_compat.py", line 35, in reraise
+    raise value
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1813, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "/www/blog/venv/lib/python3.6/site-packages/flask/app.py", line 1799, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "/www/blog/app/routes.py", line 167, in reset_password_request
+    send_password_reset_email(user)
+  File "/www/blog/app/email.py", line 18, in send_password_reset_email
+    sender=app.config['ADMINS'][0],
+NameError: name 'app' is not defined
